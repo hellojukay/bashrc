@@ -7,6 +7,7 @@ append() {
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 export GOPROXY="https://athens.azurefd.net"
 append $GOPATH/bin
+export GO111MODULE=on
 glide mirror set https://golang.org/x/mobile https://github.com/golang/mobile --vcs git
 glide mirror set https://golang.org/x/crypto https://github.com/golang/crypto --vcs git
 glide mirror set https://golang.org/x/net https://github.com/golang/net --vcs git
