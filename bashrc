@@ -9,4 +9,4 @@ export GOPROXY="https://athens.azurefd.net"
 append $GOPATH/bin
 export GO111MODULE=on
 alias "ll=ls -l"
-alisa "help=tldr"
+alias "help=tldr"
