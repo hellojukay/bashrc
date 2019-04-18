@@ -4,6 +4,7 @@ parse_git_branch() {
 append() {
   export PATH=$PATH:$1
 }
+# git 仓库自动显示当前分支
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 export GOPROXY="https://athens.azurefd.net"
 append $GOPATH/bin
