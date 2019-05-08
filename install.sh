@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# add docker complete commandline
+sudo curl -L https://raw.githubusercontent.com/docker/compose/1.24.0/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 cat bashrc > .bashrc
 # install  bashmarks
 cd bashmarks
