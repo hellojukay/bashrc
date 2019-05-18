@@ -6,9 +6,9 @@ append() {
 }
 # git 仓库自动显示当前分支
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
-export GOPROXY="https://athens.azurefd.net"
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export GOPROXY=https://gocenter.io
 append $GOPATH/bin
 export GO111MODULE=on
 alias "ll=ls -l"
