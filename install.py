@@ -2,6 +2,8 @@
 
 import os
 import sys
+import logging
+
 
 install_flag = '#BASHRC'
 home=os.environ['HOME']
@@ -16,6 +18,8 @@ def install_bashrc():
         source_command = 'source' + ' ' +  script_dir + '/' + 'bashrc' + ' ' + install_flag
         with open(profile, "a") as f:
             f.write(source_command)
+    else:
+        print('skip install bashrc')
 
 def install_tmux():
     tmux_config = '.tmux.conf'
@@ -25,7 +29,11 @@ def install_tmux():
         f.close()
 
 def main():
+
     install_bashrc()  # install bash config
     install_tmux()    # install tmux config
+    print('done')
+    return 0
 
 main()
+
