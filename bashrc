@@ -17,5 +17,3 @@ alias "help=tldr"
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 
  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-source "$BASH_IT"/bash_it.sh
-

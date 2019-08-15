@@ -15,7 +15,7 @@ export GO111MODULE=on
 alias "ll=ls -l"
 alias "help=tldr"
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
-source "$BASH_IT"/bash_it.sh
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+ [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 source /home/hellojukay/.local/bin/bashmarks.sh
