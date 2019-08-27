@@ -17,3 +17,7 @@ alias "help=tldr"
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 
  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+dvwa() {
+    docker run --rm -it -d --name dvwa -p 80:80 vulnerables/web-dvwa
+}
