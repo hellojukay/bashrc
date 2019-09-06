@@ -14,6 +14,7 @@ export GO111MODULE=on
 alias "ll=ls -l"
 alias "help=tldr"
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
+alias open="/usr/bin/xdg-open"
 
  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
