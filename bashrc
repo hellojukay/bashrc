@@ -18,4 +18,7 @@ alias open="/usr/bin/xdg-open"
 
  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+dvwa() {
+    docker run --rm -it -d --name dvwa -p 80:80 vulnerables/web-dvwa
+}
  append /home/hellojukay/.cargo/bin
