@@ -16,7 +16,10 @@ alias "help=tldr"
 alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
 alias open="/usr/bin/xdg-open"
 
- [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# 关闭 pc 喇叭
+xset -b 
 
 dvwa() {
     docker run --rm -it -d --name dvwa -p 80:80 vulnerables/web-dvwa
@@ -28,3 +31,4 @@ si() {
 sf() {
     cat $1 | xclip -selection clipboard
 }
+
