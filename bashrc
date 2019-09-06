@@ -22,3 +22,9 @@ dvwa() {
     docker run --rm -it -d --name dvwa -p 80:80 vulnerables/web-dvwa
 }
  append /home/hellojukay/.cargo/bin
+si() {
+    xclip -selection clipboard -t image/png -i $1
+}
+sf() {
+    cat $1 | xclip -selection clipboard
+}
