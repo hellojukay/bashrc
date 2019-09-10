@@ -31,4 +31,10 @@ si() {
 sf() {
     cat $1 | xclip -selection clipboard
 }
+sc() {
+    tmpfile=$(mktemp /tmp/screent-XXXXXXXXXXXXXXXXXXX.png)
+    import ${tmpfile}
+    si ${tmpfile}
+    echo ${tmpfile}
+}
 
