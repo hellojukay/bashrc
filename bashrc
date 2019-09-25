@@ -13,7 +13,7 @@ append $GOPATH/bin
 export GO111MODULE=on
 alias "ll=ls -l"
 alias "help=tldr"
-alias asciicast2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif'
+alias 2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif '
 alias open="/usr/bin/xdg-open"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -37,4 +37,14 @@ sc() {
     si ${tmpfile}
     echo ${tmpfile}
 }
-
+rgif(){
+	tmpfile=$(mktemp -u /tmp/asciinema-XXXXXXXXXXXX.cast)
+	gif=$(mktemp -u XXXXXX.gif)
+	asciinema rec $tmpfile
+	echo "save recording file to $tmpfile"
+	cp $tmpfile .
+	2gif -s 1 $(basename $tmpfile) $gif 
+	echo "save gif file t $gif"
+	sudo chown $USER:$USER $gif
+	rm $(basename $tmpfile)
+}
