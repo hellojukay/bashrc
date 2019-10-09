@@ -44,7 +44,7 @@ rgif(){
 	echo "save recording file to $tmpfile"
 	cp $tmpfile .
 	2gif -s 1 $(basename $tmpfile) $gif 
-	echo "save gif file t $gif"
+	echo "save gif file to $gif"
 	sudo chown $USER:$USER $gif
 	rm $(basename $tmpfile)
 }
