@@ -1,0 +1,27 @@
+#!/usr/bin/env perl
+#use strict;
+#use warnings;
+use Getopt::Long;
+my $p;
+my $help;
+GetOptions(
+	'p=s' => \$p ,
+	'h' => \$help
+);
+
+sub print_usage () {
+	print "usage:\n\t lof -p <process name>\n\t lof -h print help message!\n"
+}
+
+if($help) {
+	print_usage();
+	exit 0;
+}
+print $p;
+my @pids = `ps aux | grep $ARGV[0] | awk '{print \$2}'`;
+foreach my $pid (@pids) {
+	my @files = `sudo lsof -p $pid`;
+	foreach my $file (@files) {
+		print $file;
+	}
+}
