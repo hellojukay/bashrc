@@ -9,6 +9,8 @@ export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 export VISUAL=vim
 export EDITOR="$VISUAL"
 export GOPROXY=https://gocenter.io
+TERM=xterm
+export TERM
 append $GOPATH/bin
 export GO111MODULE=on
 alias "ll=ls -l"
@@ -50,3 +52,4 @@ rgif(){
 	sudo chown $USER:$USER $gif
 	rm $(basename $tmpfile)
 }
+
