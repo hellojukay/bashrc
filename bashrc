@@ -29,6 +29,7 @@ dvwa() {
     docker run --rm -it -d --name dvwa -p 80:80 vulnerables/web-dvwa
 }
 append /home/hellojukay/.cargo/bin
+append /home/hellojukay/github/bashrc/tools
 si() {
     xclip -selection clipboard -t image/png -i $1
 }

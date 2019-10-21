@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+script=`realpath $0`;
+dir=`dirname $script`
+# 图片需要是 png 格式，并且大小符合当前显示器，如果不是使用 convert 命令转化
+i3lock -i ${dir}/wallpaper.png -t 
+
