@@ -53,3 +53,6 @@ rgif(){
 	rm $(basename $tmpfile)
 }
 
+clear-container(){
+    docker ps -a | grep Exit | awk '{print $1}' | xargs -I {} docker rm {}
+}
