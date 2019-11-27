@@ -22,7 +22,7 @@ def install_bashrc():
         print('skip install bashrc')
 
 def install_tmux():
-    tmux_config = '.tmux.conf'
+    tmux_config = 'tmux.conf'
     tmux_config_content = open(tmux_config).read().strip()
     with open(home + '/' + '.tmux.conf','w') as f:
         f.write(tmux_config_content)
