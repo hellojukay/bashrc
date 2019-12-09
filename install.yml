@@ -31,8 +31,8 @@
             dest: ~/.config/i3/config
             force: yes
 
-      - name: archlinux install alacritty
-        shell: pacman -S {{item}}  --noconfirm
+      - name: archlinux install softs
+        shell: pacman -S {{item}} --noconfirm
         become: yes
         become_user: root
         with_items:
@@ -45,8 +45,16 @@
             - dmenu 
         when: ansible_distribution == 'Archlinux'
 
-      - name: ubuntu install alacritty
-        shell: sudo apt install  alacritty --yes
+      - name: ubuntu install softs
+        shell: sudo apt install {{item}} --yes
+        with_items:
+            - alacritty
+            - tmux
+            - i3-wm
+            - i3lock
+            - i3status
+            - compton
+            - dmenu 
         when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
       
       - name: create cargo home
