@@ -1,5 +1,7 @@
 这是我个人的bash配置
 
-# 使用方式
-$ python3 install.py
-
+# 安装
+```shell
+pip install ansible
+ansible-playbook install.yml
+```

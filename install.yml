@@ -1,0 +1,23 @@
+- name: install linux config
+  hosts: localhost
+  tasks:
+      - name: config bash
+        lineinfile:
+            path: ~/.bashrc
+            line: source {{playbook_dir}}/bashrc
+            insertafter: .*VISUAL.*
+      - name: config tmux
+        copy:
+            src: tmux.conf
+            dest: ~/.tmux.conf
+            force: yes
+      - name: config tools
+        lineinfile:
+            path: ~/.bashrc
+            line: export PATH=$PATH:{{playbook_dir}}/tools
+            insertafter: source.*bashrc
+      - name: config bashmarks.sh
+        lineinfile:
+            path: ~/.bashrc
+            line: source {{playbook_dir}}/bashmarks.sh
+            insertafter: export.*tools
