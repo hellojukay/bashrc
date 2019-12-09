@@ -6,18 +6,56 @@
             path: ~/.bashrc
             line: source {{playbook_dir}}/bashrc
             insertafter: .*VISUAL.*
+
       - name: config tmux
         copy:
             src: tmux.conf
             dest: ~/.tmux.conf
             force: yes
+
       - name: config tools
         lineinfile:
             path: ~/.bashrc
             line: export PATH=$PATH:{{playbook_dir}}/tools
             insertafter: source.*bashrc
+
       - name: config bashmarks.sh
         lineinfile:
             path: ~/.bashrc
             line: source {{playbook_dir}}/bashmarks.sh
             insertafter: export.*tools
+
+      - name: config i3
+        copy:
+            src: i3.config
+            dest: ~/.config/i3/config
+            force: yes
+
+      - name: archlinux install alacritty
+        shell: pacman -S {{item}}  --noconfirm
+        become: yes
+        become_user: root
+        with_items:
+            - alacritty
+            - tmux
+            - i3-wm
+            - i3lock
+            - i3status
+            - compton
+            - dmenu 
+        when: ansible_distribution == 'Archlinux'
+
+      - name: ubuntu install alacritty
+        shell: sudo apt install  alacritty --yes
+        when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      
+      - name: create cargo home
+        file:
+            path: ~/.cargo/bin
+            state: directory
+
+      - name: config cargo 
+        copy:
+            src: cargo.config
+            dest: ~/.cargo/config
+            force: yes
