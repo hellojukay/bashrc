@@ -9,7 +9,7 @@
 
       - name: config tmux
         copy:
-            src: tmux.conf
+            src: tmux.config
             dest: ~/.tmux.conf
             force: yes
 
