@@ -3,7 +3,7 @@
   tasks:
       - name: create .conf
         file:
-            path: $HOME/.config
+            path: $HOME/.config/i3
             state: directory
 
       - name: config bash
