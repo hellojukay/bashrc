@@ -1,6 +1,11 @@
 - name: install linux config
   hosts: localhost
   tasks:
+      - name: create .conf
+        file:
+            path: $HOME/.config
+            state: directory
+
       - name: config bash
         lineinfile:
             path: ~/.bashrc
