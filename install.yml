@@ -1,6 +1,23 @@
 - name: install linux config
   hosts: localhost
   tasks:
+      - name: mkdir -p $HOME/.vim
+        file:
+            path: ~/.vim/UltiSnips
+            state: directory
+
+      - name: copy UltiSnips
+        copy:
+            src: UltiSnips/
+            dest: ~/.vim/UltiSnips/
+            force: yes
+
+      - name: copy vimrc
+        copy:
+            src: vimrc
+            dest: ~/.vim/vimrc
+            force: yes
+
       - name: create .conf
         file:
             path: $HOME/.config/i3
