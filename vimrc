@@ -7,10 +7,13 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Valloric/YouCompleteMe'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 "defx 配置 -
-Plug 'Shougo/defx.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-
+if has('nvim')
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/defx.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'SirVer/ultisnips'
 
 " :help 中文插件
@@ -61,6 +64,7 @@ noremap ter :terminal<CR>
 noremap <C-j>  :below terminal<CR>
 noremap <C-n> :Defx <cr>
 nnoremap <leader>r :source $MYVIMRC<CR>
+
 
 "config defx
 call defx#custom#option('_', {
