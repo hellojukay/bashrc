@@ -15,6 +15,8 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 
 " :help 中文插件
 Plug 'yianwillis/vimcdoc'

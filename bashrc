@@ -10,6 +10,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export GOPROXY=https://goproxy.io
 export TERM=xterm-256color
+export PATH=$PATH:$HOME/.local/bin
 append $GOPATH/bin
 export GO111MODULE=on
 alias "ll=ls -l"
