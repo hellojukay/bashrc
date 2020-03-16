@@ -14,6 +14,9 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+" rust 
+Plug 'rust-lang/rust'
+
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
