@@ -97,3 +97,6 @@ function! s:defx_toggle_tree() abort
     endif
     return defx#do_action('multi', ['drop'])
 endfunction
+
+"rust
+let g:rustfmt_autosave = 1
