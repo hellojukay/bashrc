@@ -6,10 +6,21 @@
             path: ~/.vim/UltiSnips
             state: directory
 
+      - name: mkdir -p $HOME/.vim
+        file:
+            path: ~/.vim/autoload/
+            state: directory
+
       - name: copy UltiSnips
         copy:
             src: UltiSnips/
             dest: ~/.vim/UltiSnips/
+            force: yes
+
+      - name: copyc plug.vim
+        copy:
+            src: plug.vim
+            dest: ~/.vim/autoload/plug.vim
             force: yes
 
       - name: copy vimrc
