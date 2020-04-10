@@ -21,9 +21,6 @@ alias open="/usr/bin/xdg-open"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# 关闭 pc 喇叭
-xset -b 
-
 append /home/hellojukay/.cargo/bin
 append /home/hellojukay/github/bashrc/tools
 append $HOME/.local/bin
