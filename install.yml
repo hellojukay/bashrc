@@ -82,7 +82,6 @@
       - name: ubuntu install softs
         shell: sudo apt install {{item}} --yes
         with_items:
-            - alacritty
             - tmux
             - i3-wm
             - i3lock

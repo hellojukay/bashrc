@@ -23,10 +23,10 @@ alias open="/usr/bin/xdg-open"
 
 # 关闭 pc 喇叭
 xset -b 
-# bash 使用 vi 输入模式
 
 append /home/hellojukay/.cargo/bin
 append /home/hellojukay/github/bashrc/tools
+append $HOME/.local/bin
 si() {
     xclip -selection clipboard -t image/png -i $1
 }
