@@ -24,11 +24,7 @@ alias open="/usr/bin/xdg-open"
 # 关闭 pc 喇叭
 xset -b 
 # bash 使用 vi 输入模式
-set -o vi
 
-dvwa() {
-    docker run --rm -it -d --name dvwa -p 80:80 vulnerables/web-dvwa
-}
 append /home/hellojukay/.cargo/bin
 append /home/hellojukay/github/bashrc/tools
 si() {
