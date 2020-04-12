@@ -6,21 +6,11 @@ Plug 'godlygeek/tabular'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Valloric/YouCompleteMe'
 Plug 'martinda/Jenkinsfile-vim-syntax'
-"defx 配置 -
-if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/defx.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
 " rust 
 Plug 'rust-lang/rust'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-
-
 " :help 中文插件
 Plug 'yianwillis/vimcdoc'
 call plug#end()
@@ -64,36 +54,6 @@ inoremap (<CR> (<ESC>o)<ESC>ko
 inoremap [<CR> [<ESC>o]<ESC>ko
 inoremap "<CR> "<ESC>o"<ESC>ko
 "normal 模式的映射"
-noremap <C-n> :Defx <cr>
 nnoremap <leader>r :source $MYVIMRC<CR>
-
-
-"config defx
-call defx#custom#option('_', {
-      \ 'winwidth': 30,
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 0,
-      \ 'buffer_name': '',
-      \ 'toggle': 1,
-      \ 'resume': 1
-      \ })
-
-autocmd FileType defx call s:defx_mappings()
-
-function! s:defx_mappings() abort
-  nnoremap <silent><buffer><expr> l     <SID>defx_toggle_tree()                    " 打开或者关闭文件夹，文件
-  nnoremap <silent><buffer><expr> .     defx#do_action('toggle_ignored_files')     " 显示隐藏文件
-  nnoremap <silent><buffer><expr> <C-r>  defx#do_action('redraw')
-endfunction
-
-function! s:defx_toggle_tree() abort
-    " Open current file, or toggle directory expand/collapse
-    if defx#is_directory()
-        return defx#do_action('open_or_close_tree')
-    endif
-    return defx#do_action('multi', ['drop'])
-endfunction
-
 "rust
 let g:rustfmt_autosave = 1
