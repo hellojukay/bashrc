@@ -24,6 +24,7 @@ alias open="/usr/bin/xdg-open"
 append /home/hellojukay/.cargo/bin
 append /home/hellojukay/github/bashrc/tools
 append $HOME/.local/bin
+append $HOME/go/bin
 si() {
     xclip -selection clipboard -t image/png -i $1
 }
