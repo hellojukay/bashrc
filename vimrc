@@ -64,9 +64,6 @@ inoremap (<CR> (<ESC>o)<ESC>ko
 inoremap [<CR> [<ESC>o]<ESC>ko
 inoremap "<CR> "<ESC>o"<ESC>ko
 "normal 模式的映射"
-noremap ter :terminal<CR>
-"在下方向打开 terminal
-noremap <C-j>  :below terminal<CR>
 noremap <C-n> :Defx <cr>
 nnoremap <leader>r :source $MYVIMRC<CR>
 
