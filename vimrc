@@ -6,8 +6,6 @@ Plug 'godlygeek/tabular'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Valloric/YouCompleteMe'
 Plug 'martinda/Jenkinsfile-vim-syntax'
-" rust 
-Plug 'rust-lang/rust'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
