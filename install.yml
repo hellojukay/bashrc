@@ -73,3 +73,11 @@
             src: cargo.config
             dest: ~/.cargo/config
             force: yes
+      - name: mkdir ~/.config/alacritty
+        file:
+            path: ~/.config/alacritty
+            state: directory
+      - name: copy alacritty.yml
+        copy:
+            src: alacritty.yml
+            dest: ~/.config/alacritty/alacritty.yml
