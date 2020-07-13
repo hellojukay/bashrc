@@ -18,6 +18,7 @@ alias "help=tldr"
 alias wget="wget -c"
 alias 2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif '
 alias open="/usr/bin/xdg-open"
+alias bat="bat -n"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
