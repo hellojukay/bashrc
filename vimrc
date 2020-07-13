@@ -42,7 +42,8 @@ set nocompatible
 "开启实时搜索
 set incsearch
 set conceallevel=0
-set expandtab
+" tab 自动展开为空格
+set expandtab 
 filetype plugin indent on
 
 "insert 模式的映射"
