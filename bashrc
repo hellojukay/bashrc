@@ -8,7 +8,7 @@ append() {
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 export VISUAL=vim
 export EDITOR="$VISUAL"
-export GOPROXY=https://goproxy.io
+export GOPROXY=https://gocenter.io
 export TERM=xterm-256color
 export PATH=$PATH:$HOME/.local/bin
 append $GOPATH/bin
