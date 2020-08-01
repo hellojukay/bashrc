@@ -1,6 +1,15 @@
 - name: install linux config
   hosts: localhost
   tasks:
+      - name: install font
+        copy:
+            src: "{{ item }}"
+            dest: /usr/share/fonts/TTF/ 
+        with_fileglob: 'fonts/*.ttf'
+        become: yes
+        become_user: root
+      - name: fc-cache -vf
+        shell: fc-cache -vf
       - name: mkdir -p $HOME/.vim
         file:
             path: ~/.vim/UltiSnips
