@@ -1,0 +1,34 @@
+#!/bin/perl
+
+#use strict;
+#use warnings;
+
+sub git_clone(@){
+    my $origin_url = $_[0];
+    my $url = $origin_url =~ s/github\.com/hub\.fastgit\.org/r;
+    printf "%s\n",$url;
+    system("git clone $url");
+    my @arr = split(/\/+/, $origin_url =~ s/(\.git)$//r);
+    my $dir = $arr[-1];
+    chdir $dir;
+    system("git remote set-url origin $origin_url");
+    system("git fetch")
+}
+
+sub print_usage() {
+    print "two mthods to clone github repo\n";
+    print "  1. perl clone <repo>\n";
+    print "  2. ./clone <repo>\n";
+}
+
+my $argc = @ARGV;
+if($argc == 0){
+    print_usage();
+    exit(1);
+}
+if($ARGV[0] =~ m/(-h)|(--help)|(^help$)/){
+    print_usage();
+    exit(0);
+}
+
+git_clone($ARGV[0]);
