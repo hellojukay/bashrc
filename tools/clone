@@ -1,7 +1,13 @@
 #!/bin/perl
 
-#use strict;
-#use warnings;
+# 参考知乎文章: https://zhuanlan.zhihu.com/p/165413464
+# 两个   github.com  镜像网址来实现 clone 加速
+#   1.   github.com.cnpmjs.org
+#   2.   https://hub.fastgit.org
+
+
+use strict;
+use warnings;
 
 sub git_clone(@){
     my $origin_url = $_[0];
