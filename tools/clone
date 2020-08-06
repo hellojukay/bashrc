@@ -32,6 +32,16 @@ if($argc == 0){
     print_usage();
     exit(1);
 }
+my $repo = $ARGV[0];
+if($repo =~ m/^git@/){
+    print "only support https url now, please try the follow command:\n\n";
+    $repo = $repo =~ s/:/\//r;
+    $repo = $repo =~ s/^git@/https:\/\//r;
+    print "    perl clone $repo \n\n";
+    print "or\n\n";
+    print "    clone $repo \n\n";
+    exit(1);
+}
 if($ARGV[0] =~ m/(-h)|(--help)|(^help$)/){
     print_usage();
     exit(0);
