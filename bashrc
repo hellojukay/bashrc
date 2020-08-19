@@ -7,22 +7,22 @@ append() {
 # git 仓库自动显示当前分支
 export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 export VISUAL=vim
+# 命令行记录保存执行时间
+export HISTTIMEFORMAT='%F %T '
 export EDITOR="$VISUAL"
 export GOPROXY=https://gocenter.io
 export TERM=xterm-256color
 export PATH=$PATH:$HOME/.local/bin
-append $GOPATH/bin
 export GO111MODULE=on
 alias "ll=ls -l"
 alias "help=tldr"
-alias wget="wget -c"
-alias 2gif='docker run --rm -v $PWD:/data asciinema/asciicast2gif '
 alias open="/usr/bin/xdg-open"
 alias bat="bat -n"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-append /home/hellojukay/.cargo/bin
+append $GOPATH/bin
+append $HOME/.cargo/bin
 append /home/hellojukay/github/bashrc/tools
 append $HOME/.local/bin
 append $HOME/go/bin
