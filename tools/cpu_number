@@ -1,0 +1,4 @@
+#!/bin/perl
+# 统计 cpu 核心数量, 通过 linux 的 /proc/stat 文件获取CPU信息
+my $n = `cat /proc/stat  | grep -E 'cpu[0-9]+' | wc -l`;
+printf "%d\n", $n;
