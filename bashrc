@@ -10,7 +10,7 @@ export VISUAL=vim
 # 命令行记录保存执行时间
 export HISTTIMEFORMAT='%F %T '
 export EDITOR="$VISUAL"
-export GOPROXY=https://gocenter.io
+export GOPROXY=https://goproxy.cn
 export TERM=xterm-256color
 export PATH=$PATH:$HOME/.local/bin
 export GO111MODULE=on
