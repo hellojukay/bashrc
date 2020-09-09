@@ -22,6 +22,7 @@ alias bat="bat -n"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 append $GOPATH/bin
+append $HOME/bin
 append $HOME/.cargo/bin
 append /home/hellojukay/github/bashrc/tools
 append $HOME/.local/bin
