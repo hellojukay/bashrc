@@ -90,3 +90,11 @@
         copy:
             src: alacritty.yml
             dest: ~/.config/alacritty/alacritty.yml
+      - name: mkfir ~/.pip/
+        file:
+            path: ~/.pip/
+            state: directory
+      - name: copy pip.conf
+        copy:
+            src: pip.conf
+            dest: ~/.pip/pip.conf
