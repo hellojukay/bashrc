@@ -33,7 +33,8 @@ set relativenumber
 set hlsearch
 set ts=4
 set shiftwidth=4
-set smartindent
+" 按下 tab 自动输入 4 个空格
+set expandtab
 set wrap
 set showcmd
 set wildmenu
