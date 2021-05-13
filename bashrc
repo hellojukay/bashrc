@@ -59,3 +59,7 @@ genpasswd() {
         [ "$l" == "" ] && l=20
         tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
+# 通过代理的方式执行某个命令
+proxy(){
+    export https_proxy=http://127.0.0.1:7890 && http_proxy=http://127.0.0.1:7890 && eval $@
+}
