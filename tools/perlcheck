@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+
+sub find_modules {
+    my $dir = shift;
+    my @modules = ();
+    if(-d $dir){
+        chdir $dir;
+        my @files = glob "**/*.pm";
+        foreach (@files) {
+            $_ =~ s/$\.pm//g;
+            $_ =~ s/\//\:\:/g;
+            printf "%s\n",$_;
+        }
+    }
+    return @modules;
+}
+foreach (@INC){
+    find_modules($_);
+}
