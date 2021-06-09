@@ -49,6 +49,7 @@ set conceallevel=0
 " tab 自动展开为空格
 set expandtab 
 set encoding=utf-8
+set tags+=~/.vim/systags
 filetype plugin indent on
 
 "insert 模式的映射"
