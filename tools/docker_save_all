@@ -2,7 +2,39 @@
 use strict;
 use warnings;
 
+use Getopt::Long;
+
+
+sub usage($);
+
+GetOptions("o|output=s" => \(my $output),
+           "h|hel"     => \(my $help));
+
+
+if($help) {
+    usage(0);
+}
+
+if( not $output) {
+    usage(1);
+}
 
 my $image_list = `docker image ls | grep -v none | grep -v TAG| grep -v RE | awk '{printf "\%s:%s\ ",\$1,\$2}'`;
 
-system("docker save -o docker.tar $image_list");
+system("docker save -o $output $image_list");
+
+
+sub usage($) {
+    my $code = shift;
+    my $msg = <<EOF;
+docker_save_all [options]  save all images to file.
+    -h
+    --help        Print help message
+
+    -o
+    --output      Set output file
+EOF
+    print($msg);
+    exit($code);
+}
+
