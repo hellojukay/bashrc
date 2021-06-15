@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+
+my $image_list = `docker image ls | grep -v none | grep -v TAG| grep -v RE | awk '{printf "\%s:%s\ ",\$1,\$2}'`;
+
+system("docker save -o docker.tar $image_list");
