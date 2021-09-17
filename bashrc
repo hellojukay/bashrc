@@ -19,7 +19,7 @@ alias "help=tldr"
 alias "pdf=zathura"
 alias open="/usr/bin/xdg-open"
 alias bat="bat -n"
-alias silicon="alias -b='#FFFFFF'"
+alias silicon='silicon -b=\#FFFFFF'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
