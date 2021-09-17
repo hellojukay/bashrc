@@ -1,0 +1,49 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+
+
+sub usage($);
+
+GetOptions("o|output=s" => \(my $output),
+           "h|hel"     => \(my $help));
+
+
+if($help) {
+    usage(0);
+}
+
+if( not $output) {
+    usage(1);
+}
+
+sub usage($) {
+    my $code = shift;
+    my $msg = <<EOF;
+docker_save_all [options]  save all images to file.
+    -h
+    --help        Print help message
+
+    -o
+    --output      Set output file
+EOF
+    print($msg);
+    exit($code);
+}
+
+
+my $cmd = "docker save ";
+my @lines = `docker image ls | grep -v SIZE`;
+foreach my $line (@lines) {
+    chomp $line;
+    my @flags = split(/\s+/,$line);
+    if(@flags <2){
+        next;
+    }
+    $cmd = $cmd . sprintf(" %s:%s",$flags[0],$flags[1]);
+}
+$cmd = $cmd . " >  $output";
+system($cmd);
