@@ -8,7 +8,7 @@ use Getopt::Long;
 sub usage($);
 
 GetOptions("o|output=s" => \(my $output),
-           "h|hel"     => \(my $help));
+           "h|help"     => \(my $help));
 
 
 if($help) {
