@@ -11,15 +11,19 @@ sub usage (){
     print "    -h\n";
     print "    -help  Print help message.\n";
 }
+
 GetOptions("n=i" => \(my $len),
             "h|help" => \(my $help));
 if($help){
     usage();
     exit(0);
 }
-$len = 15 unless($len);
+# 设置默认长度
+$len = 20 unless($len);
 
-my @chars = ('0'..'9','a'..'z', 'A'..'Z','_','@','^');
+my @chars = ('0'..'9','a'..'z', 'A'..'Z','!',',',':','_','@','^');
 my $string;
-while($len--){ $string .= $chars[rand @chars] };
+while($len--){
+    $string .= $chars[rand @chars];
+}
 print "$string\n";
