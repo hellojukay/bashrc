@@ -1,0 +1,25 @@
+#!/usr/bin/env perl
+sub nodes (){
+    my @lines = `kubectl get nodes |grep -v NAME`;
+    my @hosts;
+    foreach my $line (@lines) {
+       chomp($line);
+       next unless(length($line));
+       my @flags = split(/\s+/,$line);
+       push @hosts, $flags[0];
+    }
+    return \@hosts;
+}
+
+sub nslookup ($) {
+    my $host = shift;
+    my $line = `nslookup $host | grep Address | grep -v \\#`;
+    my @flags = split(/\s+/,$line);
+    return $flags[1];
+}
+
+
+my $hosts = nodes();
+foreach my $node (@$hosts) {
+    printf "%-40s\t%s\n", $node, nslookup($node);
+}
