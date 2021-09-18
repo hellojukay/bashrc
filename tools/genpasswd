@@ -1,0 +1,25 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Getopt::Long;
+
+sub usage (){
+    print "genpasswd [options] generate password.\n";
+    print "    -n     Set password length.\n";
+    print "\n";
+    print "    -h\n";
+    print "    -help  Print help message.\n";
+}
+GetOptions("n=i" => \(my $len),
+            "h|help" => \(my $help));
+if($help){
+    usage();
+    exit(0);
+}
+$len = 15 unless($len);
+
+my @chars = ('0'..'9','a'..'z', 'A'..'Z','_','@','^');
+my $string;
+while($len--){ $string .= $chars[rand @chars] };
+print "$string\n";
