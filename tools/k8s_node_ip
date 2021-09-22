@@ -1,4 +1,27 @@
 #!/usr/bin/env perl
+use Getopt::Long;
+
+sub usage($);
+
+GetOptions("all" => \(my $all),
+           "h|help"     => \(my $help));
+sub usage($) {
+    my $code = shift;
+    my $msg = <<EOF;
+nodes [options]  display k8s nodes.
+    -h
+    --help       Print help message
+
+    --all        Print hostname and ip address, if not set then print ip only.
+EOF
+    print($msg);
+    exit($code);
+}
+
+if($help) {
+    usage(0);
+}
+
 sub nodes (){
     my @lines = `kubectl get nodes |grep -v NAME`;
     my @hosts;
@@ -21,5 +44,9 @@ sub nslookup ($) {
 
 my $hosts = nodes();
 foreach my $node (@$hosts) {
-    printf "%-40s\t%s\n", $node, nslookup($node);
+    if($all) {
+        printf "%-40s\t%s\n", $node, nslookup($node);
+    } else {
+        printf "%s\n", nslookup($node);
+    }
 }
