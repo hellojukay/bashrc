@@ -19,12 +19,13 @@ if($help){
     exit(0);
 }
 
+# 设置默认长度
+$len = 20 unless($len);
+
 if($len < 4) {
     print "最小长度为 4\n";
     exit(1);
 }
-# 设置默认长度
-$len = 20 unless($len);
 
 sub genpasswd ($) {
     my $len = shift;
