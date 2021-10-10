@@ -1,4 +1,4 @@
-#!/bin/perl
+#!/usr/bin/env perl
 
 # 参考知乎文章: https://zhuanlan.zhihu.com/p/165413464
 # 两个   github.com  镜像网址来实现 clone 加速
