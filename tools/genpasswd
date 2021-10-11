@@ -18,12 +18,45 @@ if($help){
     usage();
     exit(0);
 }
+
 # 设置默认长度
 $len = 20 unless($len);
 
-my @chars = ('0'..'9','a'..'z', 'A'..'Z','!',',',':','_','@','^');
-my $string;
-while($len--){
-    $string .= $chars[rand @chars];
+if($len < 4) {
+    print "最小长度为 4\n";
+    exit(1);
 }
-print "$string\n";
+
+sub genpasswd ($) {
+    my $len = shift;
+    my @chars = ('0'..'9','a'..'z', 'A'..'Z','!',',',':','_','@','^','.','&');
+    my $string;
+    while($len--){
+        $string .= $chars[rand @chars];
+    }
+    return $string;
+}
+
+sub check ($) {
+    my $s = shift;
+    unless($s =~ m/[0-9]/){
+        return 0;
+    }
+    unless($s =~ m/[a-z]/){
+        return 0;
+    }
+    unless($s =~ m/[A-Z]/){
+        return 0;
+    }
+    unless($s =~ m/[!,:_@.^&]/){
+        return 0;
+    }
+    return 1;
+}
+while(1) {
+    my $pass = genpasswd($len);
+    if(check($pass)){
+        print "$pass\n";
+	exit(0);
+    }
+}
