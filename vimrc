@@ -70,6 +70,7 @@ inoremap [<CR> [<ESC>o]<ESC>ko
 inoremap "<CR> "<ESC>o"<ESC>ko
 "normal 模式的映射"
 nnoremap <leader>r :source $MYVIMRC<CR>
+nnoremap <C-j> :belowright terminal<CR>
 "rust
 let g:rustfmt_autosave = 1
 
@@ -99,6 +100,7 @@ function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr> N       defx#do_action('new_directory')            " 创建新的文件夹
   nnoremap <silent><buffer><expr> d       defx#do_action('remove')
   nnoremap <silent><buffer><expr> r       defx#do_action('rename')
+  nnoremap <silent><buffer><expr> s       defx#do_action('repeat')
 endfunction
 
 function! s:defx_toggle_tree() abort
