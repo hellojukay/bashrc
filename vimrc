@@ -14,9 +14,19 @@ Plug 'yianwillis/vimcdoc'
 " rust
 Plug 'rust-lang/rust.vim'
 
+" defx
+if has('nvim')
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/defx.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 call plug#end()
 
 let nmapleader = "\<space>"
+let mapleader = "\<space>"
 "snips 配置
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -68,3 +78,33 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
+
+call defx#custom#option('_', {
+      \ 'winwidth': 30,
+      \ 'split': 'vertical',
+      \ 'direction': 'topleft',
+      \ 'show_ignored_files': 0,
+      \ 'buffer_name': '',
+      \ 'toggle': 1,
+      \ 'resume': 1
+      \ })
+nmap <silent> <Leader>l :Defx <cr>
+autocmd FileType defx call s:defx_mappings()
+
+function! s:defx_mappings() abort
+  nnoremap <silent><buffer><expr> l       <SID>defx_toggle_tree()                    " 打开或者关闭文件夹，文件
+  nnoremap <silent><buffer><expr> .       defx#do_action('toggle_ignored_files')     " 显示隐藏文件
+  nnoremap <silent><buffer><expr> <C-r>   defx#do_action('redraw')                   " 重新渲染 windows
+  nnoremap <silent><buffer><expr> n       defx#do_action('new_file')                 " 创建新的文件
+  nnoremap <silent><buffer><expr> N       defx#do_action('new_directory')            " 创建新的文件夹
+  nnoremap <silent><buffer><expr> d       defx#do_action('remove')
+  nnoremap <silent><buffer><expr> r       defx#do_action('rename')
+endfunction
+
+function! s:defx_toggle_tree() abort
+    " Open current file, or toggle directory expand/collapse
+    if defx#is_directory()
+        return defx#do_action('open_or_close_tree')
+    endif
+    return defx#do_action('multi', ['drop'])
+endfunctio
