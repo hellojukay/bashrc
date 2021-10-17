@@ -58,7 +58,7 @@
       - name: config tools
         lineinfile:
             path: ~/.bashrc
-            line: export PATH=$PATH:{{playbook_dir}}/tools
+            line: export PATH=$PATH:{{playbook_dir}}/bin/
             insertafter: source.*bashrc
 
       - name: config bashmarks.sh

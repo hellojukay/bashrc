@@ -26,7 +26,7 @@ alias silicon='silicon -b=\#FFFFFF'
 append $GOPATH/bin
 append $HOME/bin
 append $HOME/.cargo/bin
-append /home/hellojukay/github/bashrc/tools
+append /home/hellojukay/github/bashrc/bin/
 append $HOME/.local/bin
 append $HOME/go/bin
 si() {
