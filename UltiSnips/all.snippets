@@ -29,4 +29,27 @@ snippet perl
 use strict;
 use warnings;
 
+use Getopt::Long;
+
+GetOptions("o|output=s" => \(my $output),
+           "h|help"     => \(my $help),
+           "v|verbose"  => \(my $verbose));
+
+sub usage($) {
+    my $code = shift;
+    my $msg = <<EOF;
+[options]  save all images to file.
+    -h
+    --help        Print help message
+
+    -v
+    --verbose     Print debug log
+EOF
+    print($msg);
+    exit($code);
+}
+
+if($help) {
+    usage(0);
+}
 endsnippet
