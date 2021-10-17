@@ -2,7 +2,6 @@
 
 sub find_modules {
     my $dir = shift;
-    my @modules = ();
     if(-d $dir){
         chdir $dir;
         my @files = glob "**/*.pm";
@@ -12,7 +11,6 @@ sub find_modules {
             printf "%s\n",$_;
         }
     }
-    return @modules;
 }
 foreach (@INC){
     find_modules($_);
