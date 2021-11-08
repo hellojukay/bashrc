@@ -83,7 +83,7 @@ let g:netrw_winsize = 20
 call defx#custom#option('_', {
       \ 'winwidth': 30,
       \ 'split': 'vertical',
-      \ 'direction': 'topleft',
+      \ 'direction': 'botright',
       \ 'show_ignored_files': 0,
       \ 'buffer_name': '',
       \ 'toggle': 1,
@@ -109,4 +109,4 @@ function! s:defx_toggle_tree() abort
         return defx#do_action('open_or_close_tree')
     endif
     return defx#do_action('multi', ['drop'])
-endfunctio
+endfunction
