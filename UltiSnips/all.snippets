@@ -60,3 +60,30 @@ use strict;
 use warnings;
 
 endsnippet
+
+
+snippet perl:thread
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use threads;
+use Thread::Queue;
+
+my $q = Thread::Queue->new();
+foreach (0..12) {
+    threads->create(sub {
+            while(defined(my $item = $q->dequeue())) {
+                # 消费
+            }
+    })
+}
+while(<>){
+    # 生产
+    $q->enqueue($item)
+}
+
+# 等待所有任务执行完毕
+$q->end();
+$_->join() for threads->list();
+endsnippet
