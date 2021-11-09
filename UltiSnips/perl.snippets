@@ -1,0 +1,8 @@
+snippet sub:info
+sub info($) {
+    use POSIX qw(strftime);
+    my $msg = shift;
+    my $date = strftime "%Y-%m-%d %H:%M:%S", localtime;
+    print "$date $msg\n";
+}
+endsnippet
