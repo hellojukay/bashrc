@@ -51,7 +51,6 @@ set expandtab
 set wrap
 set showcmd
 set wildmenu
-set hlsearch
 set nocompatible
 "开启实时搜索
 set incsearch
@@ -71,6 +70,8 @@ inoremap "<CR> "<ESC>o"<ESC>ko
 "normal 模式的映射"
 nnoremap <leader>r :source $MYVIMRC<CR>
 nnoremap <C-j> :belowright terminal<CR>
+"esc 关闭搜索高亮
+nnoremap <leader>c :nohlsearch<CR><esc>
 "rust
 let g:rustfmt_autosave = 1
 
