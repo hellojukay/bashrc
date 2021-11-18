@@ -61,5 +61,5 @@ clear-container(){
 }
 # 通过代理的方式执行某个命令
 with_proxy(){
-    https_proxy=http://127.0.0.1:7890  http_proxy=http://127.0.0.1:7890 "$@"
+   https_proxy=http://127.0.0.1:7890  http_proxy=http://127.0.0.1:7890  HTTPS_PROXY=http://127.0.0.1:7890 HTTP_PROXY=http://127.0.0.1:7890 "$@"
 }
