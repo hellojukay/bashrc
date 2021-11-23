@@ -1,6 +1,8 @@
 set -o vi
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  if command -v git &> /dev/null; then
+      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  fi
 }
 append() {
   export PATH=$PATH:$1
