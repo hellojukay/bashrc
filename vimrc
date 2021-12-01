@@ -111,3 +111,6 @@ function! s:defx_toggle_tree() abort
     endif
     return defx#do_action('multi', ['drop'])
 endfunction
+
+" perl 代码按 = 格式化
+autocmd FileType perl setlocal equalprg=perltidy\ -st
