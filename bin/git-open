@@ -1,0 +1,66 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Getopt::Long;
+
+GetOptions("p|pipeline" => \(my $pipeline),
+           "h|help"     => \(my $help));
+
+sub usage($) {
+    my $code = shift;
+    my $msg = <<EOF;
+git open [options]  open git repo with default browser .
+    -h
+    --help        Print help message
+
+    -p
+    --pipeline    Open repo pipelines
+EOF
+    print($msg);
+    exit($code);
+}
+if($help) {
+    usage(0);
+}
+
+# 是否是 github 的仓库
+sub is_github_repo ($) {
+    my $url = shift;
+    return $url =~ /github\.com/ ;
+}
+# 获取 pipeline 页面的地址
+sub pipeline_url (@) {
+    my $url = shift;
+    if(shift) {
+    # github
+        $url .= "/actions";
+    } else {
+        # gitlab
+        $url .= "/-/pipelines";
+    }
+    return $url;
+}
+
+# 用默认浏览器打开页面
+sub _open ($) {
+    my $url = shift;
+    `/usr/bin/xdg-open $url > /dev/null 2> /dev/null`;
+}
+
+# 获取 origin 地址，转化为 web 页面的地址
+my $remote = `git remote -v | grep fetch`;
+if($remote =~ m/.*?\s+(.*?)\s+.*/) {
+    $remote ="$1";
+}
+$remote = $remote =~ s/\.git$//r;
+$remote = $remote =~ s/^git@/https:\/\//r;
+$remote = $remote =~ s/(:)([^\/])/\/$2/r;
+
+# 打开 pipeline 地址
+if($pipeline) {
+    _open(pipeline_url($remote,is_github_repo($remote)));
+    exit(0);
+}
+_open($remote);
+exit(0);
