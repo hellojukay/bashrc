@@ -65,3 +65,7 @@ clear-container(){
 with_proxy(){
    https_proxy=http://127.0.0.1:7890  http_proxy=http://127.0.0.1:7890  HTTPS_PROXY=http://127.0.0.1:7890 HTTP_PROXY=http://127.0.0.1:7890 "$@"
 }
+# ts 转 mp4 文件
+tomp4 () {
+    ffmpeg -i $1 -vcodec copy -acodec copy -f mp4 main.mp4
+}
