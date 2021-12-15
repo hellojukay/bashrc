@@ -1,39 +1,45 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl
 use strict;
 use warnings;
 
 use Getopt::Long;
 
-GetOptions("p|pipeline" => \(my $pipeline),
-           "h|help"     => \(my $help));
+GetOptions(
+    "p|pipeline" => \( my $pipeline ),
+    "v|verbose"  => \( my $verbose ),
+    "h|help"     => \( my $help )
+);
 
 sub usage($) {
     my $code = shift;
-    my $msg = <<EOF;
+    my $msg  = <<EOF;
 git open [options]  open git repo with default browser .
     -h
     --help        Print help message
+    -v
+    --verbose     Print debug log
 
     -p
-    --pipeline    Open repo pipelines
+    --pipeline    Open repo pipeline list page
 EOF
     print($msg);
     exit($code);
 }
-if($help) {
+if ($help) {
     usage(0);
 }
 
 # 是否是 github 的仓库
 sub is_github_repo ($) {
     my $url = shift;
-    return $url =~ /github\.com/ ;
+    return $url =~ /github\.com/;
 }
+
 # 获取 pipeline 页面的地址
 sub pipeline_url (@) {
     my $url = shift;
-    if(shift) {
-    # github
+        # github
+    if (shift) {
         $url .= "/actions";
     } else {
         # gitlab
@@ -43,24 +49,33 @@ sub pipeline_url (@) {
 }
 
 # 用默认浏览器打开页面
-sub _open ($) {
+sub _open (@) {
     my $url = shift;
+    if(shift) {
+        printf "opening $url\n";
+    }
     `/usr/bin/xdg-open $url > /dev/null 2> /dev/null`;
 }
 
 # 获取 origin 地址，转化为 web 页面的地址
-my $remote = `git remote -v | grep fetch`;
-if($remote =~ m/.*?\s+(.*?)\s+.*/) {
-    $remote ="$1";
+sub get_remote () {
+    my $remote = `git remote -v | grep fetch`;
+    if ( $remote =~ m/.*?\s+(.*?)\s+.*/ ) {
+        $remote = "$1";
+    }
+    $remote = $remote =~ s/\.git$//r;
+    $remote = $remote =~ s/^git@/https:\/\//r;
+    $remote = $remote =~ s/(:)([^\/])/\/$2/r;
+    return $remote;
 }
-$remote = $remote =~ s/\.git$//r;
-$remote = $remote =~ s/^git@/https:\/\//r;
-$remote = $remote =~ s/(:)([^\/])/\/$2/r;
 
+
+########################## main here ###############################
+my $remote = get_remote();
 # 打开 pipeline 地址
-if($pipeline) {
-    _open(pipeline_url($remote,is_github_repo($remote)));
+if ($pipeline) {
+    _open( pipeline_url( $remote, is_github_repo($remote) ) , $verbose);
     exit(0);
 }
-_open($remote);
+_open($remote,$verbose);
 exit(0);
