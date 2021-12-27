@@ -69,3 +69,8 @@ with_proxy(){
 tomp4 () {
     ffmpeg -i $1 -vcodec copy -acodec copy -f mp4 main.mp4
 }
+
+silicon-code() {
+    silicon $1 -o /tmp/a.png
+    google-chrome-stable /tmp/a.png
+}
