@@ -29,7 +29,7 @@ if($len < 4) {
 
 sub genpasswd ($) {
     my $len = shift;
-    my @chars = ('0'..'9','a'..'z', 'A'..'Z','!',',',':','_','@','^','.','&');
+    my @chars = ('0'..'9','a'..'z', 'A'..'Z','!',',',':','_','@','^','.','&','-');
     my $string;
     while($len--){
         $string .= $chars[rand @chars];
