@@ -1,0 +1,7 @@
+#!/usr/bin/env perl
+
+my $root = `git rev-parse --show-toplevel`;
+exit(1) unless($root);
+chomp $root;
+my $cmd = "find $root  -not -path '*.git/*' -not -path '*node_modules/*' | fzf";
+system($cmd);
