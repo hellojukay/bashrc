@@ -54,7 +54,13 @@ sub _open (@) {
     if(shift) {
         printf "opening $url\n";
     }
-    `/usr/bin/xdg-open $url > /dev/null 2> /dev/null`;
+    # darwin system
+    if(-x '/usr/bin/open') {
+        `/usr/bin/open $url > /dev/null 2> /dev/null`;
+    } else {
+        # linux system
+        `/usr/bin/xdg-open $url > /dev/null 2> /dev/null`;
+    }
 }
 
 # 获取 origin 地址，转化为 web 页面的地址
