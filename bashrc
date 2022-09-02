@@ -21,7 +21,7 @@ export PATH=$PATH:$HOME/.local/bin
 export GO111MODULE=on
 alias "ll=ls -l"
 alias "help=tldr"
-alias "pdf=zathura"
+alias "pdf=evince"
 alias open="/usr/bin/xdg-open"
 alias bat="bat -n"
 alias silicon='silicon -b=\#FFFFFF'
