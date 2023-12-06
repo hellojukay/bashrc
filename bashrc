@@ -1,16 +1,11 @@
 set -o vi
-parse_git_branch() {
-  if command -v git &> /dev/null; then
-      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-  fi
-}
 append() {
   export PATH=$PATH:$1
 }
 # man 加上颜色输出
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 # git 仓库自动显示当前分支
-export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="\u@\h \W\[\033[32m\]\$(branch)\[\033[00m\] $ "
 export VISUAL=vim
 # 命令行记录保存执行时间
 export HISTTIMEFORMAT='%F %T '
