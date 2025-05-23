@@ -1,0 +1,72 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use Cwd qw(abs_path cwd);
+use File::Spec;
+use File::Basename;
+
+sub usage {
+    print <<"HELP";
+Usage: $0 [options] <file_or_directory>
+
+Options:
+  -r, --realpath   解析符号链接（默认不解析）
+  -h, --help       显示帮助信息
+
+Examples:
+  $0 ../file.txt        # 输出上级目录中的 file.txt 的绝对路径
+  $0 ./subdir           # 输出当前目录下的 subdir 绝对路径
+  $0 -r ~/symlink       # 解析家目录下的符号链接
+HELP
+    exit;
+}
+
+# 参数解析
+my ($input, $resolve_symlink) = (undef, 0);
+while (my $arg = shift @ARGV) {
+    if ($arg eq '-r' || $arg eq '--realpath') {
+        $resolve_symlink = 1;
+    } elsif ($arg eq '-h' || $arg eq '--help') {
+        usage();
+    } else {
+        $input = $arg;
+    }
+}
+
+unless (defined $input) {
+    print "错误：未指定文件或目录\n";
+    usage();
+    exit 1;
+}
+
+# 处理路径（自动解析 . 和 ..）
+my $absolute_path;
+if ($resolve_symlink) {
+    $absolute_path = abs_path($input);  # 解析符号链接并规范化路径
+} else {
+    $absolute_path = File::Spec->rel2abs($input);  # 仅转换为绝对路径
+    
+    # 手动规范化路径（处理 .. 和 .）
+    my @parts = File::Spec->splitdir($absolute_path);
+    my @clean_parts;
+    for my $part (@parts) {
+        next if $part eq '.';  # 忽略当前目录标记
+        if ($part eq '..') {
+            pop @clean_parts if @clean_parts;  # 返回上级目录
+        } else {
+            push @clean_parts, $part;
+        }
+    }
+    $absolute_path = File::Spec->catdir(@clean_parts);
+    
+    # 如果是文件且路径末尾有/则去掉
+    $absolute_path =~ s{/+$}{} unless -d $absolute_path;
+}
+
+# 检查路径是否存在
+unless (-e $absolute_path) {
+    print "错误：路径 '$input' 不存在\n";
+    exit 1;
+}
+
+print "$absolute_path\n";

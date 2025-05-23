@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+import ipaddress
+import sys
+
+def is_subnet_overlap(cidr1, cidr2):
+    try:
+        net1 = ipaddress.ip_network(cidr1, strict=False)
+        net2 = ipaddress.ip_network(cidr2, strict=False)
+    except ValueError as e:
+        print(f"输入错误: {e}")
+        return None
+
+    # 检查是否有重叠
+    return net1.overlaps(net2)
+
+def main():
+    if len(sys.argv) != 3:
+        print("用法: python subnet_checker.py <CIDR1> <CIDR2>")
+        sys.exit(1)
+
+    cidr1 = sys.argv[1]
+    cidr2 = sys.argv[2]
+
+    result = is_subnet_overlap(cidr1, cidr2)
+
+    if result is None:
+        sys.exit(1)
+
+    if result:
+        print("⚠ 子网冲突")
+    else:
+        print("✅ 无冲突")
+
+if __name__ == "__main__":
+    main()

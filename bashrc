@@ -17,7 +17,7 @@ export GO111MODULE=on
 alias "ll=ls -l"
 alias "help=tldr"
 alias "pdf=evince"
-alias open="/usr/bin/xdg-open"
+#alias open="/usr/bin/xdg-open"
 alias bat="bat -n"
 alias silicon='silicon -b=\#FFFFFF'
 

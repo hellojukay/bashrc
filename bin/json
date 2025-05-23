@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
+export PYTHONIOENCODING=UTF-8
 if $2 ; then
-    python -m json.tool $1
+    python3 -m json.tool $1
 else
-    python -m json.tool
+    python3 -m json.tool
 fi
