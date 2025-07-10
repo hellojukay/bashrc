@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+
+my @devs=`ipconfig  getiflist | tr " " "\n"`;
+for my $dev (@devs) {
+    chomp $dev;;
+    my $ip =`ipconfig  getifaddr $dev`;
+    next unless($ip);
+    chomp $ip;
+    printf "%-10s    %s\n",$dev,$ip;
+}
